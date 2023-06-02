@@ -56,6 +56,10 @@ h3, h3 a, h3 a:visited {
   text-decoration: none;
 }
 
+.nav a:visited {
+  color: black;
+}
+
 .nav a:hover {
   color: gray;
 }

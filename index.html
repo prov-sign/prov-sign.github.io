@@ -30,8 +30,7 @@ PROV is a candidate in the ongoing <a href="https://csrc.nist.gov/projects/pqc-d
 </p>
 
 <p>
-PROV stands for <em><b>PR</b>ovable unbalanced <b>O</b>il and <b>V</b>inegar</em>.
-As many attacks on Multivariate Cryptography have been published, the confidence in this alternative has been undermined. Consequently, we think it is highly important to support such schemes with a security proof. Since the introduction of UOV, some security proofs appeared at PQCrypto 2011 by Sakumoto <i>et al</i> <a href = "#SSH11">[SSH11]</a>, and more recently by Kosuge and Xagawa <a href = "#KX22">[KX22]</a>, who also provide a proof in the QROM. Here, we use another proof, which also combines a technique from the MAYO signature scheme due to Beullens <a href="#Beu22">[Beu22]</a>.
+PROV stands for <em><b>PR</b>ovable unbalanced <b>O</b>il and <b>V</b>inegar</em>. It is based on the Unbalanced Oil and Vinegar (UOV) signature scheme due to Kipnis, Patarin, and Goubin <a href="#KPG99">[KPG99]</a>. While UOV has resisted attacks for more than twenty years, confidence in Multivariate Cryptography in general has been undermined by recurring attacks. Consequently, we think it is highly important to support such schemes with a security proof. Since the introduction of UOV, some security proofs have appeared at PQCrypto 2011 by Sakumoto <i>et al</i> <a href = "#SSH11">[SSH11]</a>, and more recently by Kosuge and Xagawa <a href = "#KX22">[KX22]</a>, who also provide a proof in the QROM. Here, we propose another proof, which builds on the previous works and combines them with a technique from the MAYO signature scheme due to Beullens <a href="#Beu22">[Beu22]</a>.
 </p>
 
 <h2>Main features</h2>
@@ -116,7 +115,7 @@ Jacques Patarin.
 <a id="resources"></a>
 
 <p>
-<a href="PROV.pdf">Full design document</a>, including the specification, design rationale, and security proofs.
+<a href="PROV.pdf">Full design document</a>, including specification, design rationale, and security proofs.
 </li>
 </p>
 
@@ -133,6 +132,9 @@ Ward Beullens. <em>MAYO: Practical post-quantum signatures from oil-and-vinegar 
 <li><a id="CDFp21"></a>
 Cas Cremers,Samed D&uuml;zl&uuml;, Rune Fiedler, Marc Fischlin, and Christian Janson. <em>BUFF-ing signature schemes beyond unforgeability and the case of post-quantum signatures</em>. In 2021 IEEE Symposium on Security and Privacy, pages 1696–1714. IEEE Computer Society Press, May 2021.
 </li>
+<li><a id="KPG99"></a>
+Aviad Kipnis, Jacques Patarin, and Louis Goubin. <em>Unbalanced Oil and Vinegar signature schemes</em>. In Jacques Stern, editor, EUROCRYPT’99, volume 1592 of LNCS, pages 206–222. Springer, Heidelberg, May 1999.
+</li>
 <li><a id="KX22"></a>
 Haruhisa Kosuge and Keita Xagawa. <em>Probabilistic hash-and-sign with retry in the quantum random oracle model.</em> Cryptology ePrint Archive, Report 2022/1359, 2022. <a href="https://eprint.iacr.org/2022/1359">https://eprint.iacr.org/2022/1359</a>.
 </li>
@@ -140,6 +142,8 @@ Haruhisa Kosuge and Keita Xagawa. <em>Probabilistic hash-and-sign with retry in 
 Koichi Sakumoto, Taizo Shirai, and Harunaga Hiwatari. <em>On provable security of UOV and HFE signature schemes against chosen-message attack</em>. In Bo-Yin Yang, editor, Post-Quantum Cryptography - 4th International Workshop, PQCrypto 2011, pages 68–82. Springer, Heidelberg, November / December 2011.
 </li>
 </ul>
+
+<a href="">Back to top</a>
 
 </div>
 
