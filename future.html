@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html><head>
+<meta charset="utf-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<title>PROV</title>
+
+<meta http-equiv="Content-Language" content="EN">
+<meta name="Language" content="EN">
+<link rel="stylesheet" href="main.css">
+<link rel="stylesheet" type="text/css" href="raleway-font.css">
+</head>
+
+<body>
+
+<h1>PROV Post-Quantum Signatures</h1>
+
+<ul class="nav">
+  <li><a href="">ABOUT</a></li>
+  <li><a href="#params">PARAMETERS</a></li>
+  <li><a href="#resources">RESOURCES</a></li>
+</ul>
+
+<div class="content">
+
+<h2>About PROV</h2>
+<p>
+PROV is a digital signature scheme based on multivariate cryptography. It is designed to remain secure against attackers equipped with quantum computers.
+PROV is a candidate in the ongoing <a href="https://csrc.nist.gov/projects/pqc-dig-sig">post-quantum digital signatures standardization process  organized by NIST</a>.
+</p>
+
+<p>
+PROV stands for <em><b>PR</b>ovable unbalanced <b>O</b>il and <b>V</b>inegar</em>. It is based on the Unbalanced Oil and Vinegar (UOV) signature scheme due to Kipnis, Patarin, and Goubin <a href="#KPG99">[KPG99]</a>. While UOV has resisted attacks for more than twenty years, confidence in Multivariate Cryptography in general has been undermined by recurring attacks. Consequently, we think it is highly important to support such schemes with a security proof. Since the introduction of UOV, some security proofs have appeared at PQCrypto 2011 by Sakumoto <i>et al</i> <a href = "#SSH11">[SSH11]</a>, and more recently by Kosuge and Xagawa <a href = "#KX22">[KX22]</a>, who also provide a proof in the QROM. Here, we propose another proof, which builds on the previous works and combines them with a technique from the MAYO signature scheme due to Beullens <a href="#Beu22">[Beu22]</a>.
+</p>
+
+<h2>Main features</h2>
+
+<ul>
+<li>
+<b>Simplicity.</b> One of the main advantages of the UOV family of signature schemes is its simplicity: the algorithms are easy to describe, understand, and implement.
+</li>
+<li>
+<b>Provable security.</b> PROV can be proven secure both in the classical and quantum Random Oracle Model, and our choice of parameters is guided by the bound.
+</li>
+<li>
+<b>Preimage-samplable signatures.</b> Contrary to the original UOV design, PROV signatures are preimage-samplable, meaning that they leak no information to the attacker.
+</li>
+<li>
+<b>Signature size.</b> Multivariate cryptography is a good candidate for short signature schemes, and PROV is no exception. It is important to note that we make some concession on the signature size in order to attain provable security.
+</li>
+<li>
+<b>Conservative security margin.</b> The distinguishing problem underlying PROV is strictly more secure than its UOV counterpart, and its security is estimated conservatively to account for future progress.
+</li>
+<li>
+<b>Security beyond unforgeability.</b> We incorporate a simple design tweak based on the BUFF construction <a href="#CDFp21">[CDFFJ21]</a> in order to provide several advanced security guarantees.
+</li>
+</ul>
+
+<h2>Parameter sets</h2>
+<a id="params"></a>
+
+<table>
+<tr class="titlerow">
+  <th>Variant</th>
+  <th>Security level</th>
+  <th>Public key</th>
+  <th>Secret key</th>
+  <th>Exp. SK</th>
+  <th>Signature</th>
+</tr>
+<tr>
+  <td>PROV-I</td>
+  <td class="values">128</td>
+  <td class="values">68326</td>
+  <td class="values">16</td>
+  <td class="values">203752</td>
+  <td class="values">160</td>
+</tr>
+<tr>
+  <td>PROV-III</td>
+  <td class="values">192</td>
+  <td class="values">215694</td>
+  <td class="values">24</td>
+  <td class="values">666216</td>
+  <td class="values">232</td>
+</tr>
+<tr>
+  <td>PROV-V</td>
+  <td class="values">256</td>
+  <td class="values">524192</td>
+  <td class="values">32</td>
+  <td class="values">1597568</td>
+  <td class="values">304</td>
+</tr>
+</table>
+
+<p>The table shows sizes in number of bytes.</p>
+
+<h2>Consortium</h2>
+<a id="consortium"></a>
+
+<p>
+PROV is designed by
+Beno&icirc;t Cogliati,
+Jean-Charles Faug&egrave;re,
+Pierre-Alain Fouque,
+Louis Goubin,
+Robin Larrieu,
+Gilles Macario-Rat,
+Brice Minaud, and
+Jacques Patarin.
+</p>
+
+<h2>Resources</h2>
+<a id="resources"></a>
+
+
+<ul>
+<li>
+<a href="PROV_1-1_spec.pdf">PROV 1.1 design document</a>, including specification, design rationale, and security proofs.
+</li><li>
+<a href="PROV_1-1_implem.zip">PROV 1.1 reference implementation.</a> (Optimized implementation coming soon.)
+</li><li>
+<a href="https://www.di.ens.fr/brice.minaud/PROV/PROV_1-1_KAT.zip">PROV 1.1 KAT.</a> Warning: large file size.
+</li>
+</ul>
+
+<p>
+PROV 1.0 is now deprecated, but the <a href="PROV_1-0_spec.pdf">design document</a> and <a href="PROV_1-0.zip">NIST submission package 1.0.</a> remain available for reference.
+</p>
+
+<h2>Update history</h2>
+<a id="resources"></a>
+
+
+<ul>
+<li>
+June 2023 : <b>PROV 1.0</b> is submitted to the NIST call for additional post-quantum signatures.
+</li><li>
+February 2024 : <b>PROV 1.1</b> is published. This version corrects an error in the specification of the original 1.0 version, see Section 5 of the PROV 1.1 design document for more information.
+</li>
+</ul>
+
+<p>
+PROV 1.0 is now deprecated, but the <a href="PROV_1-0_spec.pdf">design document</a> and <a href="PROV_1-0.zip">NIST submission package 1.0.</a> remain available for reference.
+</p>
+
+<h2>References</h2>
+
+<ul>
+<li><a id="Beu22"></a>
+Ward Beullens. <em>MAYO: Practical post-quantum signatures from oil-and-vinegar maps.</em> In Riham AlTawy and Andreas H&uuml;lsing, editors, SAC 2021, volume 13203 of LNCS, pages 355–376. Springer, Heidelberg, September / October 2022.
+</li>
+<li><a id="CDFp21"></a>
+Cas Cremers, Samed D&uuml;zl&uuml;, Rune Fiedler, Marc Fischlin, and Christian Janson. <em>BUFF-ing signature schemes beyond unforgeability and the case of post-quantum signatures</em>. In 2021 IEEE Symposium on Security and Privacy, pages 1696–1714. IEEE Computer Society Press, May 2021.
+</li>
+<li><a id="KPG99"></a>
+Aviad Kipnis, Jacques Patarin, and Louis Goubin. <em>Unbalanced Oil and Vinegar signature schemes</em>. In Jacques Stern, editor, EUROCRYPT’99, volume 1592 of LNCS, pages 206–222. Springer, Heidelberg, May 1999.
+</li>
+<li><a id="KX22"></a>
+Haruhisa Kosuge and Keita Xagawa. <em>Probabilistic hash-and-sign with retry in the quantum random oracle model.</em> Cryptology ePrint Archive, Report 2022/1359, 2022. <a href="https://eprint.iacr.org/2022/1359">https://eprint.iacr.org/2022/1359</a>.
+</li>
+<li><a id="SSH11"></a>
+Koichi Sakumoto, Taizo Shirai, and Harunaga Hiwatari. <em>On provable security of UOV and HFE signature schemes against chosen-message attack</em>. In Bo-Yin Yang, editor, Post-Quantum Cryptography - 4th International Workshop, PQCrypto 2011, pages 68–82. Springer, Heidelberg, November / December 2011.
+</li>
+</ul>
+
+<a href="">Back to top</a>
+
+</div>
+
+</body></html>
