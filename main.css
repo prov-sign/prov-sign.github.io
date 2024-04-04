@@ -1,17 +1,17 @@
 * {
-    font-family: 'IBM Plex sans-serif', 'Arial', sans-serif;
+  font-family: 'IBM Plex sans-serif', 'Arial', sans-serif;
 }
 
 body {
-    color : black;
+  color : black;
 }
 
 body a{
-    color: #339;
+  color: #339;
 }
 
 body a:visited{
-    color: #006;
+  color: #006;
 }
 
 h1, h1 a, h1 a:visited, h2, h2 a, h2 a:visited, h3 a, h3 a:visited {
@@ -35,15 +35,50 @@ h3, h3 a, h3 a:visited {
   color: #369;
 }
 
+.news {
+  border: 1px;
+  border-style: solid;
+  border-color: lightgray;
+  padding: 8px 10px 8px 10px;
+  border-radius:10px;
+  margin: 18px auto;
+  width: 90%;
+}
+
+.news-header {
+  font-size: 16pt;
+  font-family: 'Raleway', 'IBM Plex sans-serif', 'Arial', sans-serif;
+  color: #58c;
+  text-align: center;
+}
+
+.news-table {
+  border: none;
+  margin: -12px 10px -12px 10px;
+}
+
+.date {
+  font-style: italic;
+  text-align: right;
+  vertical-align: top;
+  border: 0;
+  white-space:nowrap;
+  padding-right: 15px;
+}
+
+.entry {
+  border: 0;
+}
+
 .nav {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    text-align: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  text-align: center;
 }
 
 .nav li {
-    display:inline;
+  display:inline;
 }
 
 .nav a {
@@ -79,19 +114,19 @@ li {
 }
 
 table {
-	margin: auto;
+  margin: auto;
 }
 
 table, th, td {
-	border: 1px solid #808080;
-	padding: 0.3em;
-	border-collapse: collapse;
+  border: 1px solid #808080;
+  padding: 0.3em;
+  border-collapse: collapse;
 }
 
 th {
-	font-weight: bold;
+  font-weight: bold;
 }
 
 td.values {
-	text-align: right;
+  text-align: right;
 }
