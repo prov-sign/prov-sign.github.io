@@ -28,15 +28,20 @@
 <p>
 <table cellspacing="0" cellpadding="0" class="news-table">
 <tr><td class="date">
+May-June 2024
+</td><td class="entry">
+<b>PROV 1.2.1</b> will be published on this website in the coming months, including faster performance on Intel Haswell processors.
+</td>
+</tr><tr><td class="date">
 April 2024
 </td><td class="entry">
-<b>PROV 1.2</b> will be published on this website mid-April 2024. It will introduce a faster optimized implementation, and new security proof with improved bounds.
+<a href="#history"><b>PROV 1.2</b> is published</a>, introducing and new security proof with sharper bounds based on <a href = "#CFGM24">[CFGM24]</a>, and a faster optimized implementation for AVX2.
 </td>
 </tr><tr>
 <td class="date">
 February 2024
 </td><td class="entry">
-<a href="#history"><b>PROV 1.1</b> is published.</a>
+<a href="#history"><b>PROV 1.1</b> is published</a>, to fix a bug in the specification.
 </td>
 </tr>
 </table>
@@ -50,29 +55,31 @@ PROV is a candidate in the ongoing <a href="https://csrc.nist.gov/projects/pqc-d
 </p>
 
 <p>
-PROV stands for <em><b>PR</b>ovable unbalanced <b>O</b>il and <b>V</b>inegar</em>. It is based on the Unbalanced Oil and Vinegar (UOV) signature scheme due to Kipnis, Patarin, and Goubin <a href="#KPG99">[KPG99]</a>. While UOV has resisted attacks for more than twenty years, confidence in Multivariate Cryptography in general has been undermined by recurring attacks. Consequently, we think it is highly important to support such schemes with a security proof. Since the introduction of UOV, some security proofs have appeared at PQCrypto 2011 by Sakumoto <i>et al</i> <a href = "#SSH11">[SSH11]</a>, and more recently by Kosuge and Xagawa <a href = "#KX22">[KX22]</a>, who also provide a proof in the QROM. Here, we propose another proof, which builds on the previous works and combines them with a technique from the MAYO signature scheme due to Beullens <a href="#Beu22">[Beu22]</a>.
+PROV stands for <em><b>PR</b>ovable unbalanced <b>O</b>il and <b>V</b>inegar</em>. It is based on the Unbalanced Oil and Vinegar (UOV) signature scheme due to Kipnis, Patarin, and Goubin <a href="#KPG99">[KPG99]</a>. While UOV has resisted attacks for more than twenty years, confidence in Multivariate Cryptography in general has been undermined by recurring attacks. Consequently, we think it is highly important to support such schemes with a security proof. Since the introduction of UOV, some security proofs have appeared at PQCrypto 2011 by Sakumoto <i>et al</i> <a href = "#SSH11">[SSH11]</a>, and more recently by Kosuge and Xagawa <a href = "#KX24">[KX24]</a>, who also provide a proof in the QROM. Here, we propose another proof, which builds on the previous works and combines them with a technique from the MAYO signature scheme due to Beullens <a href="#Beu22">[Beu22]</a>.
 </p>
 
 <h2>Main features</h2>
 
+PROV combines all the benefits of UOV-based signature schemes...
 <ul>
 <li>
-<b>Simplicity.</b> One of the main advantages of the UOV family of signature schemes is its simplicity: the algorithms are easy to describe, understand, and implement. Because UOV only relies on linear algebra, side-channel protection is also easier to achieve.
+<b>Short signatures.</b> One of the main advantages of the UOV family of signature schemes is its simplicity: the algorithms are easy to describe, understand, and implement.
 </li>
 <li>
-<b>Short signatures.</b> Multivariate cryptography is one of very few known ways to achieve short post-quantum signatures.
+<b>Simplicity.</b> One of the main advantages of the UOV family of signature schemes is its simplicity: the algorithms are easy to describe, understand, and implement.
 </li>
 <li>
 <b>Time-tested design.</b> UOV has resisted attacks since 1999 <a href="#KPG99">[KPG99]</a>.
 </li>
+</ul>
+
+...together with provable security.
+<ul>
 <li>
 <b>Provable security.</b> PROV can be proven secure both in the classical and quantum Random Oracle Model, and our choice of parameters is guided by the bound.
 </li>
 <li>
-<b>Minimal assumptions.</b> The security of PROV relies only on the indistinguishability of an UOV public key from a random system (a minimal assumption about UOV security), and the MQ problem (a notorious NP-complete problem). Contrary to standard UOV, PROV signatures are preimage-sampleable, meaning that they leak no information to the attacker.
-</li>
-<li>
-<b>Conservative security margin.</b> The distinguishing problem underlying PROV is strictly more secure than its UOV counterpart, and its security is estimated conservatively to account for future progress.
+<b>Minimal assumptions.</b> PROV is the only NIST candidate that relies <i>only</i> on the indistinguishability of the UOV public key, and the average-case hardness of MQ (a notorious NP-complete problem).
 </li>
 <li>
 <b>Security beyond unforgeability.</b> We incorporate a simple design tweak based on the BUFF construction <a href="#CDFp21">[CDFFJ21]</a> in order to provide several advanced security guarantees.
@@ -85,39 +92,76 @@ PROV stands for <em><b>PR</b>ovable unbalanced <b>O</b>il and <b>V</b>inegar</em
 <table>
 <tr class="titlerow">
   <th>Variant</th>
-  <th>Security level</th>
+  <th>Bit security</th>
   <th>Public key</th>
   <th>Secret key</th>
-  <th>Exp. SK</th>
+<!--  <th>Exp. SK</th>-->
   <th>Signature</th>
 </tr>
 <tr>
   <td>PROV-I</td>
   <td class="values">128</td>
-  <td class="values">68326</td>
-  <td class="values">16</td>
-  <td class="values">203752</td>
-  <td class="values">160</td>
+  <td class="values">81045 B</td>
+  <td class="values">48 B</td>
+<!--  <td class="values">237469 B</td>-->
+  <td class="values">166 B</td>
 </tr>
 <tr>
   <td>PROV-III</td>
   <td class="values">192</td>
-  <td class="values">215694</td>
-  <td class="values">24</td>
-  <td class="values">666216</td>
-  <td class="values">232</td>
+  <td class="values">251894 B</td>
+  <td class="values">72 B</td>
+<!--  <td class="values">752528 B</td>-->
+  <td class="values">238 B</td>
 </tr>
 <tr>
   <td>PROV-V</td>
   <td class="values">256</td>
-  <td class="values">524192</td>
-  <td class="values">32</td>
-  <td class="values">1597568</td>
-  <td class="values">304</td>
+  <td class="values">588696 B</td>
+  <td class="values">96 B</td>
+<!--  <td class="values">1749728 B</td>-->
+  <td class="values">310 B</td>
 </tr>
 </table>
 
-<p>The table shows sizes in number of bytes. <i>Note:</i> These parameters are subject to slight changes in the upcoming PROV 1.2 release.</p>
+<center><p>
+Table 1 : sizes in number of bytes.
+</p></center>
+
+<table>
+<tr class="titlerow">
+  <th>Variant</th>
+  <th>Bit security</th>
+  <th>KeyGen</th>
+  <th>Sign</th>
+  <th>Verify</th>
+</tr>
+<tr>
+  <td>PROV-I</td>
+  <td class="values">128</td>
+  <td class="values">4.41 Mc</td>
+  <td class="values">0.488 Mc</td>
+  <td class="values">0.196 Mc</td>
+</tr>
+<tr>
+  <td>PROV-III</td>
+  <td class="values">192</td>
+  <td class="values">16.4 Mc</td>
+  <td class="values">1.34 Mc</td>
+  <td class="values">0.616 Mc</td>
+</tr>
+<tr>
+  <td>PROV-V</td>
+  <td class="values">256</td>
+  <td class="values">547.5 Mc</td>
+  <td class="values">2.81 Mc</td>
+  <td class="values">1.40 Mc</td>
+</tr>
+</table>
+
+<center><p>
+Table 2 : speed in megacycles. Benchmark run using the <a href="#resources">optimized AVX2 implementation</a>, measured on an Intel Core i3-8100 CPU (Coffee Lake) @3.6Ghz.
+</p></center>
 
 <h2>Consortium</h2>
 <a id="consortium"></a>
@@ -141,12 +185,17 @@ Jocelyn Ryckeghem.
 
 <ul>
 <li>
-<a href="PROV_1-1_spec.pdf">PROV 1.1 design document</a>, including specification, design rationale, and security proofs.
+<a href="PROV_1-2_spec.pdf">PROV 1.2 design document</a>, including specification, design rationale, and security proofs.
 </li><li>
-<a href="PROV_1-1_implem.zip">PROV 1.1 reference implementation.</a> (Optimized implementation coming soon.)
+<a href="PROV_1-2_implem.zip">PROV 1.2 reference implementation.</a>
 </li><li>
+<a href="PROV_1-2_optimized_AVX2.zip">PROV 1.2 optimized AVX2 implementation.</a>
+</li>
+<!--
+<li>
 <a href="https://www.di.ens.fr/brice.minaud/PROV/PROV_1-1_KAT.zip">PROV 1.1 KAT.</a> Warning: large file size.
 </li>
+-->
 </ul>
 
 <p>
@@ -162,6 +211,9 @@ PROV 1.0 is now deprecated, but the <a href="PROV_1-0_spec.pdf">design document<
 June 2023 : <b>PROV 1.0</b> is submitted to the NIST call for additional post-quantum signatures.
 </li><li>
 February 2024 : <b>PROV 1.1</b> is published. This version corrects an error in the specification of the original 1.0 version, see Section 5 of the PROV 1.1 design document for more information.
+</li><li>
+April 2024 : <b>PROV 1.2</b> is published. This version adds a new security proof, a new optimized implementation, and makes a few adjustements to enable faster performance.
+See Section 6 of the PROV 1.2 design document for more information.
 </li>
 </ul>
 
@@ -173,19 +225,22 @@ PROV 1.0 is now deprecated, but the <a href="PROV_1-0_spec.pdf">design document<
 
 <ul>
 <li><a id="Beu22"></a>
-Ward Beullens. <em>MAYO: Practical post-quantum signatures from oil-and-vinegar maps.</em> In Riham AlTawy and Andreas H&uuml;lsing, editors, SAC 2021, volume 13203 of LNCS, pages 355–376. Springer, Heidelberg, September / October 2022.
+[Beu22] Ward Beullens. <em>MAYO: Practical post-quantum signatures from oil-and-vinegar maps.</em> In Riham AlTawy and Andreas H&uuml;lsing, editors, SAC 2021, volume 13203 of LNCS, pages 355–376. Springer, Heidelberg, September / October 2022.
 </li>
 <li><a id="CDFp21"></a>
-Cas Cremers, Samed D&uuml;zl&uuml;, Rune Fiedler, Marc Fischlin, and Christian Janson. <em>BUFF-ing signature schemes beyond unforgeability and the case of post-quantum signatures</em>. In 2021 IEEE Symposium on Security and Privacy, pages 1696–1714. IEEE Computer Society Press, May 2021.
+[CDFp21] Cas Cremers, Samed D&uuml;zl&uuml;, Rune Fiedler, Marc Fischlin, and Christian Janson. <em>BUFF-ing signature schemes beyond unforgeability and the case of post-quantum signatures</em>. In 2021 IEEE Symposium on Security and Privacy, pages 1696–1714. IEEE Computer Society Press, May 2021.
+</li>
+<li><a id="CFGM24"></a>
+[CFGM24] Beno&icirc;t Cogliati, Pierre-Alain Fouque, Louis Goubin, Brice Minaud. <em>New Security Proofs and Techniques for Hash-and-Sign with Retry Signature Schemes</em>. Cryptology ePrint Archive, Report 2024/609, 2024. <a href="https://eprint.iacr.org/2024/609">https://eprint.iacr.org/2024/609</a>.
 </li>
 <li><a id="KPG99"></a>
-Aviad Kipnis, Jacques Patarin, and Louis Goubin. <em>Unbalanced Oil and Vinegar signature schemes</em>. In Jacques Stern, editor, EUROCRYPT’99, volume 1592 of LNCS, pages 206–222. Springer, Heidelberg, May 1999.
+[KPG99] Aviad Kipnis, Jacques Patarin, and Louis Goubin. <em>Unbalanced Oil and Vinegar signature schemes</em>. In Jacques Stern, editor, EUROCRYPT’99, volume 1592 of LNCS, pages 206–222. Springer, Heidelberg, May 1999.
 </li>
-<li><a id="KX22"></a>
-Haruhisa Kosuge and Keita Xagawa. <em>Probabilistic hash-and-sign with retry in the quantum random oracle model.</em> Cryptology ePrint Archive, Report 2022/1359, 2022. <a href="https://eprint.iacr.org/2022/1359">https://eprint.iacr.org/2022/1359</a>.
+<li><a id="KX24"></a>
+[KX24] Haruhisa Kosuge and Keita Xagawa. <em>Probabilistic hash-and-sign with retry in the quantum random oracle model.</em> in The International Conference on Practice and Theory in Public Key Cryptography (PKC), 2024. <a href="https://eprint.iacr.org/2022/1359">https://eprint.iacr.org/2022/1359</a>.
 </li>
 <li><a id="SSH11"></a>
-Koichi Sakumoto, Taizo Shirai, and Harunaga Hiwatari. <em>On provable security of UOV and HFE signature schemes against chosen-message attack</em>. In Bo-Yin Yang, editor, Post-Quantum Cryptography - 4th International Workshop, PQCrypto 2011, pages 68–82. Springer, Heidelberg, November / December 2011.
+[SSH11] Koichi Sakumoto, Taizo Shirai, and Harunaga Hiwatari. <em>On provable security of UOV and HFE signature schemes against chosen-message attack</em>. In Bo-Yin Yang, editor, Post-Quantum Cryptography - 4th International Workshop, PQCrypto 2011, pages 68–82. Springer, Heidelberg, November / December 2011.
 </li>
 </ul>
 
